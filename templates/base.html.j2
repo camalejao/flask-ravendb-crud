@@ -35,9 +35,18 @@
         {% block content %}
         <main class="text-light">
             <h1>CRUD RavenDB</h1>
-            Aplicação para demonstrar o uso do SGBD NoSQL <a href="https://ravendb.net">RavenDB</a>.
+            <p>Aplicação para demonstrar o uso do SGBD NoSQL <a href="https://ravendb.net">RavenDB</a>.
             Feita em Python, utilizando o microframework Flask como servidor web e o cliente oficial
-            do RavenDB em Python (PyRavenDB) como cliente para o banco de dados.
+            do RavenDB (PyRavenDB) como cliente para o banco de dados.</p>
+
+            <p>Nesta aplicação, temos duas "entidades", autores e livros. O objetivo é listar os conteúdos salvos no banco,
+            além de adicionar, editar e excluir autores e livros. Também é possível realizar uma consulta com filtro (where),
+            onde são listados todos os livros de um dado autor.</p>
+
+            <div class="d-flex justify-content-center align-items-center">
+                <a class="btn btn-light" href="/autores">Lista de Autores</a>
+                <a class="btn btn-light ms-5" href="/livros">Lista de Livros</a>
+            </div>
         </main>
         {% endblock %}
     </div>
