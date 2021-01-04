@@ -1,0 +1,44 @@
+{% extends "base.html.j2" %}
+{% block content %}
+    <h1 class="text-light">Lista de Livros</h1>
+    <button
+        class="btn btn-primary btn-sm mb-3"
+        data-bs-toggle="modal" data-bs-target="#modal">
+        Adicionar Livro
+    </button>
+    <ul id="livro" class="list-group">
+    {% for livro in livros %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ livro['titulo'] }} ({{ livro['ano'] }}) - {{ livro['autor'].nome }}
+            <span>
+                <a class="btn btn-link" href="/autor/{{ livro['autor'].id[7:] }}">
+                    Ver livros do(a) autor(a)</a>
+                <button
+                    class="btn btn-link text-danger"
+                    onclick="excluirLivro(`{{ livro['id'][8:] }}`)">
+                    Excluir
+                </button>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+{% block modal_title %}Adicionar{% endblock %}
+{% block modal_body %}
+    <label for="titulo" class="form-label">Título</label>
+    <input id="titulo" class="form-control mb-3" type="text" placeholder="Título do Livro">
+
+    <label for="ano" class="form-label">Ano de Lançamento</label>
+    <input id="ano" class="form-control mb-3" type="number" placeholder="ex: 1958">
+
+    <label for="select-autor" class="form-label">Autor</label>
+    <select id="select-autor" class="form-select" required>
+        {% for autor in autores %}
+            <option value="{{ autor['id'] }}">{{ autor.nome }}</option>
+        {% endfor %}
+    </select>
+{% endblock %}
+{% block modal_footer %}
+    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button class="btn btn-primary" onclick="novoLivro()">Salvar</button>
+{% endblock %}

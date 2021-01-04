@@ -1,0 +1,37 @@
+{% extends "base.html.j2" %}
+{% block content %}
+    <h1 class="text-light">Livros de {{ autor.nome }}</h1>
+    <button
+        class="btn btn-primary btn-sm mb-3"
+        data-bs-toggle="modal" data-bs-target="#modal">
+        Adicionar Livro
+    </button>
+    <ul id="livro" class="list-group">
+    {% for livro in livros %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ livro['titulo'] }} ({{ livro['ano'] }})
+            <span>
+                <button
+                    class="btn btn-link text-danger"
+                    onclick="excluirLivro(`{{ livro['id'][8:] }}`)">
+                    Excluir
+                </button>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
+{% block modal_title %}Adicionar Livro de {{ autor.nome }}{% endblock %}
+{% block modal_body %}
+    <label for="tituloA" class="form-label">Título</label>
+    <input id="tituloA" class="form-control mb-3" type="text" placeholder="Título do Livro">
+
+    <label for="anoA" class="form-label">Ano de Lançamento</label>
+    <input id="anoA" class="form-control mb-3" type="number" placeholder="ex: 1958">
+
+    <input id="autorA" type="text" hidden value="{{ autor.id }}">
+{% endblock %}
+{% block modal_footer %}
+    <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button class="btn btn-primary" onclick="novoLivroAutor()">Salvar</button>
+{% endblock %}
