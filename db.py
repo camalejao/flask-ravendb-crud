@@ -4,7 +4,7 @@ import os
 
 
 def init():
-    ravendb_url = os.environ['RAVENDB_URL']
+    ravendb_url = os.getenv('RAVENDB_URL', 'http://127.0.0.1:8080')
     urls = [ravendb_url]
     global store
     store = document_store.DocumentStore(urls=urls, database="Livros")
