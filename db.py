@@ -14,7 +14,7 @@ def init():
 def get_autores():
     with store.open_session() as session:
         autores = list(session.query(
-            collection_name="Autors").select("id() as id", "nome"))
+            collection_name="Autors").select("id() as id", "nome").order_by("nome"))
         return autores
 
 
@@ -35,7 +35,7 @@ def store_livro(titulo, ano, autor):
 def get_livros():
     with store.open_session() as session:
         livros = list(session.query(collection_name="Livroes").select(
-            "id() as id", "titulo", "ano", "autor"))
+            "id() as id", "titulo", "ano", "autor").order_by("titulo"))
         for l in livros:
             autor = session.load(l.autor)
             l.autor = {'id': l.autor, 'nome': autor.nome}
@@ -47,7 +47,7 @@ def get_livros_autor(id_autor):
         autor = session.load(id_autor)
         autor.id = id_autor
         livros = list(session.query(collection_name="Livroes").select(
-            "id() as id", "titulo", "ano").where(autor=id_autor))
+            "id() as id", "titulo", "ano").where(autor=id_autor).order_by("titulo"))
         return autor, livros
 
 
