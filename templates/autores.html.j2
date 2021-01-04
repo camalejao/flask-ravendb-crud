@@ -12,6 +12,12 @@
             {{ autor['nome'] }}
             <span>
                 <a class="btn btn-link" href="/autor/{{ autor['id'][7:] }}">Ver livros</a>
+                <button
+                    class="btn btn-link"
+                    data-bs-toggle="modal" data-bs-target="#modal-edit-autor"
+                    onclick="modalAutor(`{{ autor['id'] }}`, `{{ autor['nome'] }}`)">
+                    Editar
+                </button>
                 <button 
                     class="btn btn-link text-danger"
                     onclick="excluirAutor(`{{ autor['id'][7:] }}`)">

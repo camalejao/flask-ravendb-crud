@@ -12,6 +12,12 @@
             {{ livro['titulo'] }} ({{ livro['ano'] }})
             <span>
                 <button
+                    class="btn btn-link"
+                    data-bs-toggle="modal" data-bs-target="#modal-edit-livro"
+                    onclick="modalLivro(`{{ livro['id'] }}`, `{{ livro['titulo'] }}`, `{{ livro['ano'] }}`)">
+                    Editar
+                </button>
+                <button
                     class="btn btn-link text-danger"
                     onclick="excluirLivro(`{{ livro['id'][8:] }}`)">
                     Excluir
